@@ -1,0 +1,23 @@
+<div class="container-fluid text-center">
+  <div class="row">
+    <nav class="navbar navbar-light d-flex justify-content-center" style="background: #eee">
+      <div class="col-sm-4">
+        <h1>Sveiks, {{ user().userGlobalSignal().name }}!</h1>
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-danger" type="button" (click)="deleteAccount()">
+          Delete Account
+        </button>
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-info" type="button" (click)="showGameRules()">Game Rules</button>
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-success" type="button" (click)="startNewGame()">New Game</button>
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-success" type="button" (click)="exitGame()">Exit Game</button>
+      </div>
+    </nav>
+  </div>
+</div>

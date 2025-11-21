@@ -1,0 +1,26 @@
+label {
+    width: 100%;
+    text-align: center;
+}
+input[type="text"] {
+    width: 100%;
+    text-align: center;
+}
+/* Hide spinner arrows for number inputs */
+input[type="number"].form-control {
+    width: 100%;
+    text-align: center;
+    appearance: textfield;
+    -moz-appearance: textfield; 
+} 
+
+/* Chrome, Safari, Edge, Opera */
+input[type="number"].form-control::-webkit-outer-spin-button,
+input[type="number"].form-control::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} 
+strong {
+    font-size: 1.5em;
+    color: red;
+}

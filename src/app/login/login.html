@@ -1,0 +1,108 @@
+<div class="container-fluid bg">
+  <form>
+    <div class="row justify-content-center">
+      <div class="col text-center">
+        <h2 class="fw-bold text-white">Please log in</h2>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-4">
+        <input
+          [field]="loginForm.name"
+          type="text"
+          placeholder="Username"
+          class="form-control mb-3"
+        />
+      </div>
+      <div class="col-md-4">
+        <input
+          [field]="loginForm.password"
+          type="password"
+          placeholder="Password"
+          class="form-control mb-3"
+        />
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-4 text-center">
+        <button
+          class="btn btn-primary"
+          (click)="onClick()"
+          type="button"
+          [disabled]="!loginForm().valid()"
+        >
+          Let's play!
+        </button>
+
+        @if(!loginForm().valid() && loginForm.name().touched() && loginForm.password().touched()) {
+        <small class="text-danger text-center">
+          Please fix the errors above before submitting!
+        </small>
+        }
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- 
+
+  <div class="container">
+    <form>
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="text-center mb-4">
+            <h2 class="fw-bold text-white">Please log in</h2>
+          </div>
+
+          <div>
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                id="floatingUser"
+                [field]="loginForm.name"
+                type="text"
+                placeholder="Enter name"
+              />
+              @if((loginForm.name().touched() && loginForm.name().dirty()) &&
+              loginForm.name().invalid()) { @for(error of loginForm.name().errors(); track $index){
+              <div class="invalid-feedback d-block">
+                {{ error.message }}
+              </div>
+              } }
+              <label for="floatingUser">Username:</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                id="floatingPassword"
+                [field]="loginForm.password"
+                type="password"
+                placeholder="Enter password"
+              />
+              @if((loginForm.password().touched() && loginForm.password().dirty()) &&
+              loginForm.password().invalid()) { @for(error of loginForm.password().errors(); track
+              $index){
+              <div class="invalid-feedback d-block">
+                {{ error.message }}
+              </div>
+              } }
+              <label for="floatingPassword"> Password:</label>
+            </div>
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary" type="submit" [disabled]="!loginForm().valid()">
+                Let's play!
+              </button>
+
+              @if(!loginForm().valid() && loginForm.name().touched() &&
+              loginForm.password().touched()) {
+              <small class="text-danger text-center">
+                Please fix the errors above before submitting!
+              </small>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div> -->

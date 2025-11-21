@@ -1,0 +1,100 @@
+<app-header [user]="globalUser" (rules)="onRules($event)" (newGame)="startNewGame()"></app-header>
+
+<div class="container-fluid bg text-white">
+  <form>
+    <div class="row">
+      <div class="col-sm-4 text-start">
+        <div [innerHTML]="rules" [hidden]="rulesBoolean()"></div>
+        <div [hidden]="!rulesBoolean()">
+          <h2>Spēļu statistika</h2>
+          <p>Spēlētas spēles: {{ globalUser.userGlobalSignal().playedGames }}</p>
+          <p>Uzvaras: {{ globalUser.userGlobalSignal().wonGames }}</p>
+          <p>
+            Procents:
+            {{
+              globalUser.userGlobalSignal().playedGames > 0
+                ? ((globalUser.userGlobalSignal().wonGames /
+                    globalUser.userGlobalSignal().playedGames) *
+                    100 | number : '1.2-2')
+                : (0 | number : '1.2-2')
+            }}%
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-3">
+            <label for="number1"><strong>1.</strong></label>
+            <input
+              class="form-control"
+              #inputNumber1
+              [field]="gameForm.guessNumber1"
+              (focus)="clearInput(inputNumber1)"
+              type="number"
+              id="number1"
+            />
+          </div>
+          <div class="col-sm-3">
+            <label for="number2"><strong>2.</strong></label>
+            <input
+              class="form-control"
+              #inputNumber2
+              [field]="gameForm.guessNumber2"
+              (focus)="clearInput(inputNumber2)"
+              type="number"
+              id="number2"
+            />
+          </div>
+          <div class="col-sm-3">
+            <label for="number3"><strong>3.</strong></label>
+            <input
+              class="form-control"
+              #inputNumber3
+              [field]="gameForm.guessNumber3"
+              (focus)="clearInput(inputNumber3)"
+              type="number"
+              id="number3"
+            />
+          </div>
+          <div class="col-sm-3">
+            <label for="number4"><strong>4.</strong></label>
+            <input
+              class="form-control"
+              #inputNumber4
+              [field]="gameForm.guessNumber4"
+              (focus)="clearInput(inputNumber4)"
+              type="number"
+              id="number4"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <button
+              class="btn btn-primary mt-3"
+              type="button"
+              (click)="submitGuess()"
+              [disabled]="!gameForm().valid()"
+            >
+              Iesniegt minējumu
+            </button>
+            <div class="card" [hidden]="resultsCard()" style="margin-top: 15px">
+              <ol>
+                @for (attempt of attempts(); track $index) {
+                <li>
+                  Skaitļi: {{ attempt.inputedNumbers[0] }}, {{ attempt.inputedNumbers[1] }},
+                  {{ attempt.inputedNumbers[2] }}, {{ attempt.inputedNumbers[3] }} → Polšiņi:
+                  {{ attempt.result.p }}, Aliņi: {{ attempt.result.a }}
+                  @if (attempt.result.win) {
+                  <strong> (UZVARA!)</strong>
+                  }
+                </li>
+                }
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
