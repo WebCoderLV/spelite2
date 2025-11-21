@@ -110,9 +110,14 @@ export class Game implements OnInit {
             this.resultsCard.set(false);
             const gameResult = response.body as GameDTO;
             if (gameResult.win) {
-              alert('Apsveicam! Jūs uzvarējāt! Sākam jaunu spēli.');
-              this.incrementWonGames();
-              this.startNewGame();
+              let ok: boolean = confirm('Apsveicam! Jūs uzvarējāt! Sākam jaunu spēli.');
+              if (ok) {
+                this.incrementWonGames();
+                this.startNewGame();
+              } else {
+                this.incrementWonGames();
+
+              }
               return;
             }
             this.attempts.update(attempts => [...attempts, {
